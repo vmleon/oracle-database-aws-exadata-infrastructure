@@ -1,0 +1,35 @@
+formatter: markdown table
+
+content: |-
+  {{ include "header.md" }}
+
+  ## Usage
+
+  ```hcl
+  module "exadata" {
+    source = "github.com/vmleon/oracle-database-aws-exadata-infrastructure"
+
+    name_prefix       = "myapp"
+    aws_region        = "us-east-1"
+    availability_zone = "us-east-1a"
+    contact_email     = "dba-team@example.com"
+  }
+  ```
+
+  {{ .Requirements }}
+
+  {{ .Providers }}
+
+  {{ .Resources }}
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
+
+output:
+  file: README.md
+  mode: inject
+  template: |-
+    <!-- BEGIN_TF_DOCS -->
+    {{ .Content }}
+    <!-- END_TF_DOCS -->

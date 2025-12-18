@@ -46,10 +46,9 @@ variable "name_suffix" {
 variable "availability_zone" {
   description = "AWS Availability Zone for deployment. Must be in the specified aws_region and support Oracle Database@AWS."
   type        = string
-  default     = null
 
   validation {
-    condition     = var.availability_zone == null || can(regex("^[a-z]{2}-[a-z]+-[0-9][a-z]$", var.availability_zone))
+    condition     = can(regex("^[a-z]{2}-[a-z]+-[0-9][a-z]$", var.availability_zone))
     error_message = "availability_zone must be a valid AZ format (e.g., us-east-1a, eu-west-1b)."
   }
 }
